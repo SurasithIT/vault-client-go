@@ -7,7 +7,7 @@ import (
 	vault "github.com/hashicorp/vault/api"
 )
 
-func NewVaultClient(vaultAddress string, vaultToken string) *Vault {
+func NewVaultClient(vaultAddress, vaultToken string) *Vault {
 	vaultConfig := &vault.Config{
 		Address: vaultAddress,
 	}
@@ -37,7 +37,7 @@ func (vault *Vault) SaveSecret(ctx context.Context, mountPath string, secretPath
 	return output, nil
 }
 
-func (vault *Vault) ReadSecret(ctx context.Context, mountPath string, secretPath string, key string) (interface{}, error) {
+func (vault *Vault) ReadSecret(ctx context.Context, mountPath, secretPath, key string) (interface{}, error) {
 	secret, err := vault.Client.KVv2(mountPath).Get(ctx, secretPath)
 	if err != nil {
 		return nil, fmt.Errorf("unable to read secret from vault : %v", err)
@@ -49,7 +49,7 @@ func (vault *Vault) ReadSecret(ctx context.Context, mountPath string, secretPath
 	return value, nil
 }
 
-func (vault *Vault) DeleteSecret(ctx context.Context, mountPath string, secretPath string, key string) error {
+func (vault *Vault) DeleteSecret(ctx context.Context, mountPath, secretPath, key string) error {
 	err := vault.Client.KVv2(mountPath).Delete(ctx, secretPath)
 	if err != nil {
 		return err

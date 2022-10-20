@@ -27,8 +27,8 @@ func main() {
 
 	vaultAddress := config.Vault.Address
 	vaultToken := config.Vault.Token
-	mountPath := config.Vault.MountPath
-	secretPath := fmt.Sprintf("%s/%s", config.Vault.EngineName, config.Vault.EnvName)
+	mountPath := config.Vault.EngineName
+	secretPath := config.Vault.SecretPath
 
 	vault := vault.NewVaultClient(vaultAddress, vaultToken)
 	ctx := context.Background()

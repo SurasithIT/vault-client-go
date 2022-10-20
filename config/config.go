@@ -14,9 +14,8 @@ func New() (*Config, error) {
 
 	config.Vault.Address = os.Getenv("VAULT_ADDRESS")
 	config.Vault.Token = os.Getenv("VAULT_TOKEN")
-	config.Vault.EnvName = os.Getenv("VAULT_ENV_NAME")
 	config.Vault.EngineName = os.Getenv("VAULT_ENGINE_NAME")
-	config.Vault.MountPath = os.Getenv("VAULT_MOUNT_PATH")
+	config.Vault.SecretPath = os.Getenv("VAULT_SECRET_PATH")
 
 	return &config, nil
 }

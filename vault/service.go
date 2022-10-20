@@ -25,7 +25,7 @@ func NewVaultClient(vaultAddress, vaultToken string) *Vault {
 	return vault
 }
 
-func (vault *Vault) SaveSecret(ctx context.Context, mountPath string, secretPath string, key string, value interface{}) (*vault.KVSecret, error) {
+func (vault *Vault) SaveSecret(ctx context.Context, mountPath, secretPath, key string, value interface{}) (*vault.KVSecret, error) {
 	secretData := map[string]interface{}{
 		key: value,
 	}
